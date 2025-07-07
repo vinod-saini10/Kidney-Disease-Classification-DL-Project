@@ -32,7 +32,7 @@ def home():
 def trainRoute():
     os.system("python main.py")
     # os.system("dvc repro")
-    return "Training done successfully!"
+    return "Training done successfully!....."
 
 
 

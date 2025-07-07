@@ -28,4 +28,4 @@ class PredictionPipeline:
         else:
             prediction = 'Tumor'
 
-        return [{"your image have": prediction}]
+        return [{"kidney image is ": prediction}]

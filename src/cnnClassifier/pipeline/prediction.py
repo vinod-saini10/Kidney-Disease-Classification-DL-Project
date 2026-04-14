@@ -8,8 +8,13 @@ class PredictionPipeline:
         self.filename = filename
 
     def predict(self):
-        # Load model
-        model = load_model(os.path.join("artifacts", "training", "model.h5"))
+        # Load the actual trained model from artifacts
+        model_path = os.path.join("artifacts", "training", "model.h5")
+        if not os.path.exists(model_path):
+            # Fallback only if artifacts are missing, but prioritized correctly now
+            model_path = os.path.join("model", "model.h5")
+            
+        model = load_model(model_path)
 
         # Preprocess image
         imagename = self.filename
@@ -23,9 +28,14 @@ class PredictionPipeline:
         print("Model output:", result)
 
         # Interpret prediction
-        if result[0][0] > 0.5:
+        confidence = float(result[0][0])
+        if confidence > 0.5:
             prediction = 'Normal'
         else:
             prediction = 'Tumor'
+            confidence = 1 - confidence # Make confidence representative for Tumor
 
-        return [{"kidney image is ": prediction}]
+        return [{
+            "result": prediction,
+            "confidence": confidence
+        }]

@@ -14,7 +14,13 @@ joblib
 types-PyYAML
 scipy
 Flask
-Flask-Cors
+flask-sqlalchemy
+pymysql
+flask-bcrypt
+flask-jwt-extended
+flask-cors
+python-dotenv
+flask-mail
 gdown
 tensorflow
 -e .

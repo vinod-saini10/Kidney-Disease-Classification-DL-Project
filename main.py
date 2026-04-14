@@ -1,3 +1,9 @@
+import os
+import sys
+
+# Add src to sys.path to resolve ModuleNotFoundError
+sys.path.append(os.path.join(os.getcwd(), "src"))
+
 from cnnClassifier import logger
 from cnnClassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from cnnClassifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
